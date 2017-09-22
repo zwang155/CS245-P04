@@ -32,13 +32,34 @@ public class Practice4Test {
 		}
 
 		while (! stack.empty() && ! queue.empty()) {
-			if (! stack.pop().equals(queue.dequeue())) {
+			char s = stack.pop().toString().toLowerCase().charAt(0);
+			char q = queue.dequeue().toString().toLowerCase().charAt(0);
+			
+			// each of them must be a letter
+			while (! stack.empty() && (97 > s || 122 < s)) {
+				s = stack.pop().toString().toLowerCase().charAt(0);
+			}
+			while (! queue.empty() && (97 > q || 122 < q)) {
+				q = queue.dequeue().toString().toLowerCase().charAt(0);
+			}
+			
+			if (s != q) {
 				return false;
 			}
 		}
 		
-		// At this point, the stack AND the queue should be empty. But check in case...
-		if (!stack.empty() || ! queue.empty())
+		// pop all the characters which are not letters.
+		char s = 0;
+		while (!stack.empty() && (97 > s || 122 < s)) {
+			s = stack.pop().toString().toLowerCase().charAt(0);
+		}
+		char q = 0;
+		while (!queue.empty() && (97 > q || 122 < q)) {
+			q = queue.dequeue().toString().toLowerCase().charAt(0);
+		}
+		
+		// At this point, the stack AND the queue should be empty.
+		if (!stack.empty() || !queue.empty())
 			return false;
 		
 		return true;
