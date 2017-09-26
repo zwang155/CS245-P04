@@ -26,11 +26,15 @@ public class ArrayStack implements Stack {
 
 	@Override
 	public Object pop() {
+		if (empty())
+			return null;
 		return arr[index--];
 	}
 
 	@Override
 	public Object peek() {
+		if (empty())
+			return null;
 		return arr[index];
 	}
 

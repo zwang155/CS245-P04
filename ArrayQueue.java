@@ -24,6 +24,8 @@ public class ArrayQueue implements Queue {
 	
 	@Override
 	public Object dequeue() {
+		if (empty())
+			return null;
 		if (head == arr.length - 1) {
 			head = 0;
 			return arr[arr.length - 1];
